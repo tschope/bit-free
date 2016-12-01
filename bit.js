@@ -3,6 +3,8 @@ var bal = 0; //Valor de entrada da sua carteira
 var valArrego = 2; //Valor multiplicador para poder ganhar
 var valMultip = 3; //Valor multiplicador básico
 var pperda = 0.1; //Stop de perda ex.: pperda*100 = 10%
+var valorInicial = parseFloat($("#balance").text());
+var valorFinal = 0;
 function aposta() { var numb = Math.floor((Math.random() * 10) + 1); if(numb >= 6){ $('#double_your_btc_bet_hi_button').click(); } else { $('#double_your_btc_bet_lo_button').click(); }  }
 function aumenta() { if(parseFloat($("#win_amount").text()) <= 0.00000063){ $("#double_your_btc_2x").click(); }else{ zera(); aumenta(); aumenta(); } }
 function perdeu() { return $("#double_your_btc_bet_lose").text().indexOf("lose")>-1; }
@@ -12,7 +14,7 @@ function zera() { $("#double_your_btc_min").click(); $("#double_your_btc_payout_
 function amentaVai() { aumenta(); aposta(); }
 function zeraVai() { zera(); aposta(); }
 function arrego() { $("#double_your_btc_payout_multiplier").text(valArrego); $("#double_your_btc_payout_multiplier").val(valArrego); }
-function stop() { console.info("PERDEU!"); clearInterval(apt); apt=0;  }
+function stop() { console.info("PERDEU!"); valorFinal = parseFloat($("#balance").text()); console.info('Valor Inicial:'+valorInicial); console.info('Valor Final:'+valorFinal); clearInterval(apt); apt=0;  }
 function ligaSom() { $('#manual_enable_sounds').prop('checked', true); }
 function mute() { $('#manual_enable_sounds').prop('checked', false); }
 function run() {
