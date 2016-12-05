@@ -5,6 +5,7 @@ var valMultip = 3; //Valor multiplicador básico
 var pperda = 0.1; //Stop de perda ex.: pperda*100 = 10%
 var valorInicial = parseFloat($("#balance").text());
 var valorFinal = 0;
+var tempoClick = 2500;//2.5 segundos
 function aposta() { var numb = Math.floor((Math.random() * 10) + 1); if(numb >= 6){ $('#double_your_btc_bet_hi_button').click(); } else { $('#double_your_btc_bet_lo_button').click(); }  }
 function aumenta() { if(parseFloat($("#win_amount").text()) <= 0.00000063){ $("#double_your_btc_2x").click(); }else{ zera(); aumenta(); aumenta(); } }
 function perdeu() { return $("#double_your_btc_bet_lose").text().indexOf("lose")>-1; }
@@ -44,6 +45,7 @@ function run() {
     } else {
       zeraVai();
     }
-  }, 3000);
+  }, tempoClick);
 }
 run();
+
