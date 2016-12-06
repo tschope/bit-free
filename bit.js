@@ -1,7 +1,7 @@
 var apt = 0; //Intervalo
 var bal = 0; //Valor de entrada da sua carteira
 var valArrego = 2; //Valor multiplicador para poder ganhar
-var valMultip = 3.258; //Valor multiplicador básico
+var valMultip = 2.75; //Valor multiplicador básico
 var pperda = 0.1; //Stop de perda ex.: pperda*100 = 10%
 var valorInicial = parseFloat($("#balance").text());
 var valorFinal = 0;
