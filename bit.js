@@ -1,13 +1,14 @@
 var apt = 0; //Intervalo
 var bal = 0; //Valor de entrada da sua carteira
 var valArrego = 2; //Valor multiplicador para poder ganhar
-var valMultip = 2.75; //Valor multiplicador básico
+var valMultip = 19.0; //Valor multiplicador básico
 var pperda = 0.1; //Stop de perda ex.: pperda*100 = 10%
 var valorInicial = parseFloat($("#balance").text());
 var valorFinal = 0;
-var tempoClick = 3500;//3.5 segundos
+var tempoClick = 5000;//3.5 segundos
+var apostaMax = 0.00000032;
 function aposta() { var numb = Math.floor((Math.random() * 10) + 1); if(numb >= 6){ $('#double_your_btc_bet_hi_button').click(); } else { $('#double_your_btc_bet_lo_button').click(); }  }
-function aumenta() { if(parseFloat($("#win_amount").text()) <= 0.00000063){ $("#double_your_btc_2x").click(); }else{ zera(); aumenta(); aumenta(); } }
+function aumenta() { if(parseFloat($("#win_amount").text()) < apostaMax){ $("#double_your_btc_2x").click(); }else{ zera(); aumenta(); aumenta(); } }
 function perdeu() { return $("#double_your_btc_bet_lose").text().indexOf("lose")>-1; }
 function quanto() { return $("#double_your_btc_bet_lose").text().split(" ").includes("0.00000256"); }
 function minimiza() { return $("#double_your_btc_bet_lose").text().split(" ").includes("0.0000008"); }
