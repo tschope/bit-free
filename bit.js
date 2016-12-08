@@ -32,6 +32,7 @@ function ligaSom() { $('#manual_enable_sounds').prop('checked', true); }
 function mute() { $('#manual_enable_sounds').prop('checked', false); }
 function run() {
     bal = parseFloat($("#balance").text());
+    console.info('Valor Inicial:'+valorInicial);
     aposta();
     zera();
     apt = setInterval(function(){
