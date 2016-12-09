@@ -1,14 +1,15 @@
-var tempo = 2;
+var tempo = 1800;
 var intervalo = 0;
 var qtsPerdidas = 0;
-var maxAposta = 0.00000256;
+var maxAposta = 0.00000064;
 var carteira = parseFloat($("#balance").text());
 var perdaTotal = 5; //%
+var guerreiro = true;
 
 function perdeu() { return $("#double_your_btc_bet_lose").text().indexOf("lose")>-1; }
 function aposta() { $('#double_your_btc_bet_lo_button').click(); }
 function maxima() {
-    return parseFloat($("#double_your_btc_stake").val()) > maxAposta;
+    return parseFloat($("#double_your_btc_stake").val()) >= maxAposta;
 }
 function zera() {
     qtsPerdidas = 0;
@@ -28,7 +29,12 @@ function verifica() {
             if(maxima()) {
                 if(parseFloat($("#balance").text())>=carteira-(carteira*perdaTotal/100)) {
                     pusha("Perdeu " + perdaTotal + "%.");
-                    stop();
+                    if(guerreiro) {
+                        zera();
+                        aposta();
+                    } else{
+                        stop();
+                    }
                 } else {
                     pusha("Apostou o máximo " + maxAposta + " BTC.");
                     zera();
@@ -54,7 +60,7 @@ function run() {
     carteira = parseFloat($("#balance").text());
     intervalo = setInterval(function(){
         verifica();
-    }, tempo*1000);
+    }, tempo);
 }
 function pusha(texto) {
     console.info(texto);
