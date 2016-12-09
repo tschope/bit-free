@@ -18,7 +18,7 @@ function aposta() {
     }
 }
 function maxima() {
-    return parseFloat($("#double_your_btc_bet_lose").text().split(" ")[$("#double_your_btc_bet_lose").text().split(" ").length - 2]) > maxBit;
+    return parseFloat($("#double_your_btc_stake").val()) > maxBit;
 }
 function zera() {
     qtsPerdidas = 0;
