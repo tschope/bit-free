@@ -1,11 +1,12 @@
-var tempo = 2;
+var tempo = 1200; //1.2 segundos
 var intervalo = 0;
 var qtsPerdidas = 0;
 var valorInicial = parseFloat($("#balance").text());
 var valorFinal = 0;
-var maxBit = 0.00004096;
+var maxBit = 0.00000256;
 var maisToshi = 0.00000001;
 var valMultip = 2.00; //Valor multiplicador básico
+var neverStop = true;
 function perdeu() {
     return $("#double_your_btc_bet_lose").text().indexOf("lose") > -1;
 }
@@ -18,7 +19,7 @@ function aposta() {
     }
 }
 function maxima() {
-    return parseFloat($("#double_your_btc_stake").val()) > maxBit;
+    return parseFloat($("#double_your_btc_stake").val()) <= maxBit;
 }
 function zera() {
     qtsPerdidas = 0;
@@ -49,9 +50,14 @@ function verifica() {
     if (perdeu()) {
         qtsPerdidas++;
         if (qtsPerdidas >= 2) {
-            if (maxima()) {
-                stop();
-                console.info("Perdeu muito");
+            if (!maxima()) {
+                if(neverStop){
+                    zera();
+                    aposta();
+                }else{
+                    stop();
+                    console.info("Perdeu muito");
+                }
             } else {
                 aumentaVai();
             }
@@ -78,6 +84,6 @@ function run() {
     console.info('Valor Inicial:' + valorInicial);
     intervalo = setInterval(function () {
         verifica();
-    }, tempo * 1000);
+    }, tempo);
 }
 run();
