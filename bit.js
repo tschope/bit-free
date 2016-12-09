@@ -1,11 +1,11 @@
-var tempo = 2200; //1.2 segundos
+var tempo = 1800; //1.2 segundos
 var intervalo = 0;
 var qtsPerdidas = 0;
 var valorInicial = parseFloat($("#balance").text());
 var valorFinal = 0;
 var maxBit = 0.00000064;
 var maisToshi = 0.00000001;
-var valMultip = 2.00; //Valor multiplicador básico
+var valMultip = 2.25; //Valor multiplicador básico
 var arregao = false;
 function perdeu() {
     return $("#double_your_btc_bet_lose").text().indexOf("lose") > -1;
@@ -82,6 +82,7 @@ function stop() {
 }
 function run() {
     console.info('Valor Inicial:' + valorInicial);
+    poemMultip();
     intervalo = setInterval(function () {
         verifica();
     }, tempo);
