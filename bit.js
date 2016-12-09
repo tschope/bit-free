@@ -1,25 +1,25 @@
-var tempo = 1200; //1.2 segundos
+var tempo = 2200; //1.2 segundos
 var intervalo = 0;
 var qtsPerdidas = 0;
 var valorInicial = parseFloat($("#balance").text());
 var valorFinal = 0;
-var maxBit = 0.00000256;
+var maxBit = 0.00000064;
 var maisToshi = 0.00000001;
 var valMultip = 2.00; //Valor multiplicador básico
-var neverStop = true;
+var arregao = false;
 function perdeu() {
     return $("#double_your_btc_bet_lose").text().indexOf("lose") > -1;
 }
 function aposta() {
-    var numb = Math.floor((Math.random() * 10) + 1);
-    if (numb >= 6) {
+    //var numb = Math.floor((Math.random() * 10) + 1);
+    //if (numb >= 6) {
         $('#double_your_btc_bet_hi_button').click();
-    } else {
-        $('#double_your_btc_bet_lo_button').click();
-    }
+    //} else {
+    //    $('#double_your_btc_bet_lo_button').click();
+    //}
 }
 function maxima() {
-    return parseFloat($("#double_your_btc_stake").val()) <= maxBit;
+    return parseFloat($("#double_your_btc_stake").val()) > maxBit;
 }
 function zera() {
     qtsPerdidas = 0;
@@ -27,11 +27,11 @@ function zera() {
 }
 function aumenta() {
     $("#double_your_btc_2x").click();
-    /* parseFloat($("#double_your_btc_stake").val(parseFloat($("#double_your_btc_stake").val()) + maisToshi)) */
+    //parseFloat($("#double_your_btc_stake").val(parseFloat($("#double_your_btc_stake").val()) + maisToshi));
 }
 function aumentaVai() {
     aumenta();
-    aumenta();
+    //aumenta();
     aposta();
 }
 function poemMultip() {
@@ -50,8 +50,8 @@ function verifica() {
     if (perdeu()) {
         qtsPerdidas++;
         if (qtsPerdidas >= 2) {
-            if (!maxima()) {
-                if(neverStop){
+            if (maxima()) {
+                if(!arregao){
                     zera();
                     aposta();
                 }else{
