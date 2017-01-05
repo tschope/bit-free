@@ -11,7 +11,7 @@ var gameWin = 0;
 var higherbet = 0;
 startbalance = $('#balance').text();
 var startValue = '0.00000001', // Don't lower the decimal point more than 4x of current balance
-    highestbet = '0.00000256', // Max bet prevent high loss
+    highestbet = '0.00000064', // Max bet prevent high loss
     stopPercentage = 0.001, // In %. I wouldn't recommend going past 0.08
     maxWait = 500, // In milliseconds
     stopped = false,
@@ -98,9 +98,9 @@ function getRandomWait() {
 function startGame(limit) {
     document.getElementById("advertise_link_li").innerHTML = '<a href="#" onclick="stopGame()" class="advertise_link">STOP BOT</a>';
     starttime = (new Date()).getTime();
-    startValue = prompt("Number of satoshi you want to bet?", '0.00000001');
+    startValue = prompt("Number of satoshi you want to bet?", startValue);
     oldbet = startValue;
-    highestbet = prompt("Number of satoshi you want to bet MAX?", '0.00000128');
+    highestbet = prompt("Number of satoshi you want to bet MAX?", highestbet);
 
     round = 0;
     gameLost = 0;
